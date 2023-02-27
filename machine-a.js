@@ -1,4 +1,4 @@
-const { Kafka, logLevel } = require('kafkajs');
+const { Kafka } = require('kafkajs');
 
 const producer = new Kafka({
     clientId: 'my-app',
@@ -9,7 +9,7 @@ const sendMessage = async () => {
   await producer.connect();
   await producer.send({
     topic: 'quickstart',
-    messages: [{ value: 'Hello!' }],
+    messages: [{ value: 'BLUE' }],
   });
   await producer.disconnect();
   return;

@@ -1,0 +1,22 @@
+{
+  "name": "js-kafka",
+  "version": "1.0.0",
+  "description": "Docker app installed to your local machine.",
+  "main": "machine-a.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aldenvallestero/node-js-kafka.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aldenvallestero/node-js-kafka/issues"
+  },
+  "homepage": "https://github.com/aldenvallestero/node-js-kafka#readme",
+  "dependencies": {
+    "kafkajs": "^2.2.3"
+  }
+}

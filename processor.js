@@ -1,5 +1,7 @@
 const { Kafka } = require('kafkajs');
 
+const queue = [];
+
 const consumer = new Kafka({
   brokers: ['localhost:9092'],
   clientId: 'my-app',
@@ -11,7 +13,8 @@ const run = async () => {
 
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
-      console.log(message.value.toString())
+      queue.push(message.value.toString());
+      console.log(`Current queue: ${queue}`);
     },
   })
 }
