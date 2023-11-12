@@ -40,5 +40,21 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
 ```
 2. **Create topic.** with this command: `docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic myFirstTopic`
-3. run the consumer `node index`
-4. run the producer `node index` and you will see the logs in consumer terminal.
+3. Run the consumer `node index` first before the Producer in order to receive all messages coming from it.
+4. Lastly, run the producer `node index` and you will see messages coming from your consumer.
+
+### 🕹️ Uses of Kafka in your project
+1. Process payments and financial transactions in real-time, such as in stock exchanges, banks, and insurances.
+
+2. Track and monitor cars, trucks, fleets, and shipments in real-time, such as in logistics and the automotive industry.
+
+3. Continuously capture and analyze sensor data from IoT devices or other equipment, such as in factories and wind parks.
+
+4. Collect and immediately react to customer interactions and orders, such as in retail, the hotel and travel industry, and mobile applications.
+
+5. Monitor patients in hospital care and predict changes in condition to ensure timely treatment in emergencies.
+
+6. Connect, store, and make available data produced by different divisions of a company.
+
+7. Serve as the foundation for data platforms, event-driven architectures, and microservices.
+
