@@ -11,7 +11,7 @@ services:
     image: confluentinc/cp-kafka:7.3.0
     container_name: broker
     ports:
-      - "9092:9092"
+      - '9092:9092'
     depends_on:
       - zookeeper
     environment:
@@ -22,3 +22,15 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_CREATE_TOPICS: 'transaction:3:1'
+
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    restart: 'no'
+    ports:
+      - '9000:9000'
+    environment:
+      KAFKA_BROKERCONNECT: 'broker:29092'
+      JVM_OPTS: '-Xms32M -Xmx64M'
+    depends_on:
+      - broker

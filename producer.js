@@ -5,14 +5,25 @@ const producer = new Kafka({
     brokers: ['localhost:9092'],
   }).producer();
 
-const sendMessage = async () => {
+const moneyIn = async () => {
   await producer.connect();
   await producer.send({
-    topic: 'quickstart',
+    topic: 'transaction',
     messages: [{ value: 'BLUE' }],
   });
   await producer.disconnect();
   return;
 }
 
-sendMessage();
+const moneyOut = async () => {
+  await producer.connect();
+  await producer.send({
+    topic: 'transaction',
+    messages: [{ value: 'BLUE', partition: '' }],
+  });
+  await producer.disconnect();
+  return;
+}
+
+moneyIn();
+moneyOut();

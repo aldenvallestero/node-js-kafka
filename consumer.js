@@ -9,7 +9,7 @@ const consumer = new Kafka({
 
 const run = async () => {
   await consumer.connect();
-  await consumer.subscribe({ topic: 'quickstart', fromBeginning: true });
+  await consumer.subscribe({ topic: 'transaction', fromBeginning: true });
 
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
