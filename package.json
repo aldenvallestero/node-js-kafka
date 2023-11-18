@@ -4,7 +4,7 @@
   "description": "Docker app installed to your local machine.",
   "main": "machine-a.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --write **/*.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,9 @@
   "homepage": "https://github.com/aldenvallestero/node-js-kafka#readme",
   "dependencies": {
     "kafkajs": "^2.2.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.54.0",
+    "prettier": "^3.1.0"
   }
 }
