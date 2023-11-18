@@ -1,22 +1,7 @@
-const { Kafka } = require('kafkajs');
+const KafkaService = require('./kafka-service');
 
-const queue = [];
+const consumer = new KafkaService('consumer');
 
-const consumer = new Kafka({
-  brokers: ['localhost:9092'],
-  clientId: 'my-app',
-}).consumer({ groupId: 'test-group' })
-
-const run = async () => {
-  await consumer.connect();
-  await consumer.subscribe({ topic: 'transaction', fromBeginning: true });
-
-  await consumer.run({
-    eachMessage: async ({ topic, partition, message }) => {
-      queue.push(message.value.toString());
-      console.log(`Current queue: ${queue}`);
-    },
-  })
-}
-
-run().catch(e => console.error(`[example/consumer] ${e.message}`, e))
+consumer
+  .subscribe()
+  .catch(e => console.error(`[example/consumer] ${e.message}`, e));

@@ -1,26 +1,33 @@
-const { Kafka } = require('kafkajs');
-
-const producer = new Kafka({
-    clientId: 'my-app',
-    brokers: ['localhost:9092'],
-  }).producer();
+const KafkaService = require('./kafka-service');
 
 const moneyIn = async () => {
-  await producer.connect();
-  await producer.send({
+  const message = {
     topic: 'transaction',
-    messages: [{ value: 'BLUE' }],
-  });
+    messages: [
+      { value: 'MONEY IN' },
+      { value: 'MONEY IN' },
+    ],
+  };
+
+  const producer = new KafkaService('producer');
+  await producer.connect();
+  await producer.send(message);
   await producer.disconnect();
   return;
 }
 
 const moneyOut = async () => {
-  await producer.connect();
-  await producer.send({
+  const message = {
     topic: 'transaction',
-    messages: [{ value: 'BLUE', partition: '' }],
-  });
+    messages: [
+      { value: 'MONEY OUT' },
+      { value: 'MONEY OUT' },
+    ],
+  };
+
+  const producer = new KafkaService('producer');
+  await producer.connect();
+  await producer.send(message);
   await producer.disconnect();
   return;
 }
