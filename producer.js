@@ -1,14 +1,6 @@
 const KafkaService = require('./kafka-service');
 
-const moneyIn = async () => {
-  const message = {
-    topic: 'transaction',
-    messages: [
-      { value: 'MONEY IN' },
-      { value: 'MONEY IN' },
-    ],
-  };
-
+const send = async (message) => {
   const producer = new KafkaService('producer');
   await producer.connect();
   await producer.send(message);
@@ -16,21 +8,14 @@ const moneyIn = async () => {
   return;
 }
 
-const moneyOut = async () => {
-  const message = {
-    topic: 'transaction',
-    messages: [
-      { value: 'MONEY OUT' },
-      { value: 'MONEY OUT' },
-    ],
-  };
+const message = {
+  topic: 'transaction',
+  messages: [
+    { value: 'MONEY IN', partition: 0 },
+    { value: 'MONEY IN', partition: 1 },
+    { value: 'MONEY OUT', partition: 1 },
+    { value: 'MONEY OUT', partition: 2 },
+  ],
+};
 
-  const producer = new KafkaService('producer');
-  await producer.connect();
-  await producer.send(message);
-  await producer.disconnect();
-  return;
-}
-
-moneyIn();
-moneyOut();
+send(message);
