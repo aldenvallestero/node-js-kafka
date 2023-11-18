@@ -24,7 +24,7 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
 ```
-2. **Set up kafka image** below the zookeeper service configuration. I left everything default except adding the `KAFKA_CREATE_TOPICS: 'transaction:3:1'` under environment property in order to initialize a topic called transaction during the start up.
+2. **Set up kafka image** below the zookeeper service configuration.
 
 ```
   broker:
@@ -42,7 +42,6 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-      KAFKA_CREATE_TOPICS: 'transaction:3:1'
 ```
 3. **Setup Kafdrop** to allow localhost kafka management
 ```
@@ -58,7 +57,9 @@ services:
 ```
 ![Kafdrop](graphics/kafdrop-graphic.png)
 4. Use `docker-compose up -d` in your terminal to create docker image and run the container.
-5. Run the consumer first, finally, the producer. Make sure to watch the terminal of consumer in order to see the incoming queue messages coming from the producer.
+
+5. Visit `localhost:9000` in your browser to launch Kafdrop and create a topic for instance called **transaction**.
+6. After topic is created, run the consumer first in your root directory `node consumer` and lastly, the producer `node producer`. Make sure to watch the terminal of consumer in order to see the incoming queue messages coming from the producer.
 
 ### 🕹️ Uses of Kafka in your project
 1. Process payments and financial transactions in real-time, such as in stock exchanges, banks, and insurances.
