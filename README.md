@@ -7,11 +7,11 @@ This is a beginner friendly repository that demonstrates how to set up a kafka c
 ## 💡 General Idea
 To initiate Kafka, you'll require three essential components for the entire process to function seamlessly: a Kafka server, an operational application responsible for data production, and a consumer application. Organizing these elements into distinct folders is essential for clarity and proper system comprehension. Utilizing a YAML file, you can formulate instructions to dockerize the Kafka cluster along with its constituent parts.
 
-In the provided illustration, there exist two producers: one for incoming money events and another for outgoing money events. Additionally, a topic named transactions has been established, encompassing three partitions.
+In the provided illustration, there exist two producers: one for incoming money events and another for outgoing money events. Additionally, a topic named transfers has been established, encompassing three partitions.
 
-The Money In producer dispatches messages to the first and second partitions of the transactions topic. Conversely, the Money Out producer directs messages to the second and third partitions.
+The Money In producer dispatches messages to the first and second partitions of the transfers topic. Conversely, the Money Out producer directs messages to the second and third partitions.
 
-In this scenario, the first partition symbolizes incoming money transactions, the second partition embodies all monetary transactions, and the third partition signifies outgoing money transactions.
+In this scenario, the first partition symbolizes incoming money transfers, the second partition embodies all monetary transfers, and the third partition signifies outgoing money transfers.
 
 ## 👣 Here are the steps to do that
 1. **Set up zookeeper image** by creating the ```docker-compose.yml``` file first in a separate directory. In configuration below, I am using Confluent Inc. zookeeper image. You can choose any version you want. But in this repository, I will be sticking with version 7.3.0. I left everything default as it is. [This link](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwiGyZGsp8WCAxXXbmwGHal1DQ8QFnoECB8QAQ&url=https%3A%2F%2Fmedium.com%2F%40logeesan%2Fzookeeper-in-kafka-ce31b3dd55b1&usg=AOvVaw0DcvpBJ2huhpu_ALBUyVuz&opi=89978449) tells what a zookeeper is.
@@ -58,7 +58,7 @@ services:
 ![Kafdrop](graphics/kafdrop-graphic.png)
 4. Use `docker-compose up -d` in your terminal to create docker image and run the container.
 
-5. Visit `localhost:9000` in your browser to launch Kafdrop and create a topic for instance called **transaction**.
+5. Visit `localhost:9000` in your browser to launch Kafdrop and create a topic for instance called **transfers**.
 6. After topic is created, run the consumer first in your root directory `node consumer` and lastly, the producer `node producer`. Make sure to watch the terminal of consumer in order to see the incoming queue messages coming from the producer.
 
 ### 🕹️ Uses of Kafka in your project
