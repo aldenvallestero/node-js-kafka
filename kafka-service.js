@@ -2,7 +2,7 @@ const { Kafka } = require('kafkajs');
 
 class KafkaService {
   constructor(role, partition = []) {
-    console.info(`Kafka Service: ${role}:${partition}`);
+    console.info(`Kafka Service: ${role}:${partition.length > 0 ? partition : 'partition-off'}`);
     if (role === 'producer') {
       this.producer = new Kafka({
         clientId: 'my-app-10',
@@ -42,15 +42,19 @@ class KafkaService {
     await this.consumer.connect();
 
     console.info('Consumer subscribing to the broker ...');
-    await this.consumer.subscribe({ topic: 'transfers', fromBeginning: true });
+    await this.consumer.subscribe({ topic: 'transactions', fromBeginning: true });
 
     console.info('Consumer attempting to start ...');
     await this.consumer.run({
       eachMessage: async ({ topic, partition, message }) => {
-        if (this.partition.includes(partition)) {
-          this.queue.push([topic, message.value.toString()]);
-          console.table(this.queue);
-        }
+        this.queue.push([topic, message.value.toString()]);
+        console.table(this.queue);
+
+        // Temporarily exclude partition matching
+        // if (this.partition.includes(partition)) {
+        // this.queue.push([topic, message.value.toString()]);
+        // console.table(this.queue);
+        // }
       },
     })
   }
