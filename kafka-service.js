@@ -1,19 +1,25 @@
 const { Kafka } = require('kafkajs');
+const { KAFKA_AUTH_MECHANISM, KAFKA_CLIENT_USERNAME, KAFKA_CLIENT_PASSWORD, KAFKA_CLIENT_ID, KAFKA_BROKERS } = require('./app-references');
 
 class KafkaService {
   constructor(role, partition = []) {
     console.info(`Kafka Service: ${role}:${partition.length > 0 ? partition : 'partition-off'}`);
     if (role === 'producer') {
       this.producer = new Kafka({
-        clientId: 'my-app-10',
-        brokers: ['localhost:9092'],
+        clientId: KAFKA_CLIENT_ID,
+        brokers: KAFKA_BROKERS.split(','),
       }).producer();
     } else if (role === 'consumer') {
       this.partition = partition;
       this.queue = [];
       this.consumer = new Kafka({
-        brokers: ['localhost:9092'],
-        clientId: 'my-app-10',
+        brokers: KAFKA_BROKERS.split(','),
+        clientId: KAFKA_CLIENT_ID,
+        sasl: {
+          mechanism: KAFKA_AUTH_MECHANISM,
+          username: KAFKA_CLIENT_USERNAME,
+          password: KAFKA_CLIENT_PASSWORD,
+        }
       }).consumer({ groupId: 'test-group' });
     }
   }

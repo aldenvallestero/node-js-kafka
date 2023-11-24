@@ -1,0 +1,9 @@
+require('dotenv').config();
+
+module.exports = {
+  KAFKA_BROKERS: process.env.KAFKA_BROKERS,
+  KAFKA_CLIENT_ID: process.env.KAFKA_CLIENT_ID,
+  KAFKA_AUTH_MECHANISM: process.env.KAFKA_AUTH_MECHANISM,
+  KAFKA_CLIENT_USERNAME: process.env.KAFKA_CLIENT_USERNAME,
+  KAFKA_CLIENT_PASSWORD: process.env.KAFKA_CLIENT_PASSWORD,
+}

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/aldenvallestero/node-js-kafka#readme",
   "dependencies": {
+    "dotenv": "^16.3.1",
     "kafkajs": "^2.2.3"
   },
   "devDependencies": {
