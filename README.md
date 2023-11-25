@@ -19,24 +19,24 @@ In this scenario, the first partition symbolizes Money In, the second partition 
 In addition, here are some description for environment configurations:
 
 **KRAFT CONFIG**
-`KAFKA_ENABLE_KRAFT` - Tells to Kafka to use Raft Protocol.
-`KAFKA_BROKER_ID` - Creates a broker ID.
-`KAFKA_CFG_NODE_ID` - Creates a node ID.
-`KAFKA_KRAFT_CLUSTER_ID` - Creates a cluster ID.
-`KAFKA_CFG_CONTROLLER_QUORUM_VOTERS` - Elects the broker that will serve as a controller.
-`KAFKA_CFG_PROCESS_ROLES` - Identify all the broker roles.
+- `KAFKA_ENABLE_KRAFT` - Tells to Kafka to use Raft Protocol.
+- `KAFKA_BROKER_ID` - Creates a broker ID.
+- `KAFKA_CFG_NODE_ID` - Creates a node ID.
+- `KAFKA_KRAFT_CLUSTER_ID` - Creates a cluster ID.
+- `KAFKA_CFG_CONTROLLER_QUORUM_VOTERS` - Elects the broker that will serve as a controller.
+- `KAFKA_CFG_PROCESS_ROLES` - Identify all the broker roles.
 
 **LISTENERS CONFIG**
-`KAFKA_CFG_CONTROLLER_LISTENER_NAMES` - Sets the controller name.
-`KAFKA_CFG_LISTENERS`= Sets listeners address.
-`KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP` - Sets listeners communication protocol.
-`KAFKA_CFG_ADVERTISED_LISTENERS` - Sets the address for clients connection.
+- `KAFKA_CFG_CONTROLLER_LISTENER_NAMES` - Sets the controller name.
+- `KAFKA_CFG_LISTENERS`= Sets listeners address.
+- `KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP` - Sets listeners communication protocol.
+- `KAFKA_CFG_ADVERTISED_LISTENERS` - Sets the address for clients connection.
 
 **SASL CONFIG**
-`KAFKA_CFG_SASL_ENABLED_MECHANISMS` - Set SASL available mechanism.
-`KAFKA_CFG_SASL_MECHANISM_INTER_BROKER_PROTOCOL` - Set brokers SASL protocol.
-`KAFKA_CLIENT_USERS` - Sets the client username.
-`KAFKA_CLIENT_PASSWORDS` - Sets the client password.
+- `KAFKA_CFG_SASL_ENABLED_MECHANISMS` - Set SASL available mechanism.
+- `KAFKA_CFG_SASL_MECHANISM_INTER_BROKER_PROTOCOL` - Set brokers SASL protocol.
+- `KAFKA_CLIENT_USERS` - Sets the client username.
+- `KAFKA_CLIENT_PASSWORDS` - Sets the client password.
 
 **STEP 2:** Create a topic with 3 partitions
 
