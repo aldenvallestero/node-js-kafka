@@ -38,12 +38,23 @@ In addition, here are some description for environment configurations:
 - `KAFKA_CLIENT_USERS` - Sets the client username.
 - `KAFKA_CLIENT_PASSWORDS` - Sets the client password.
 
-**STEP 2:** Create a topic with 3 partitions
+**STEP 2:** Create a topic (with 3 partitions for instance)
 
 **Creating a topic**
+Since the configuration is SASL/PLAIN, you will need to create a file called `config.properties` and place it under `/opt/bitnami/kafka/config`.
+You will then need to put your credentials there:
+
+```
+sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="alden" password="alden-secret";
+security.protocol=SASL_PLAINTEXT
+sasl.mechanism=PLAIN
+```
 From your Docker App or any available terminal that has an access to your container, use the command below to create a topic assume that you are in the root directory.
 
 `/opt/bitnami/kafka/bin/kafka-topics.sh --create --topic TopicName --bootstrap-server localhost:9092 --partitions 3 --replication-factor 1 --command-config /opt/bitnami/kafka/config/config.properties`
+
+**Describing a topic**
+`/opt/bitnami/kafka/bin/kafka-topics.sh --describe --topic TopicName --bootstrap-server localhost:9092 --command-config /opt/bitnami/kafka/config/config.properties`
 
 **Listing all topics**
 Assume that you are in the root directory.

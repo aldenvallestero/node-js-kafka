@@ -6,8 +6,13 @@ class KafkaService {
     console.info(`Kafka Service: ${role}:${partition.length > 0 ? partition : 'partition-off'}`);
     if (role === 'producer') {
       this.producer = new Kafka({
-        clientId: KAFKA_CLIENT_ID,
         brokers: KAFKA_BROKERS.split(','),
+        clientId: KAFKA_CLIENT_ID,
+        sasl: {
+          mechanism: KAFKA_AUTH_MECHANISM,
+          username: KAFKA_CLIENT_USERNAME,
+          password: KAFKA_CLIENT_PASSWORD,
+        }
       }).producer();
     } else if (role === 'consumer') {
       this.partition = partition;

@@ -13,6 +13,7 @@ services:
       - KAFKA_KRAFT_CLUSTER_ID=MkU3OEVBNTcwNTJENDM2Qk
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@localhost:9093
       - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=false
       # LISTENERS CONFIG
       - ALLOW_PLAINTEXT_LISTENER=yes
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=INTERNAL
@@ -22,8 +23,12 @@ services:
       # SASL CONFIG
       - KAFKA_CFG_SASL_ENABLED_MECHANISMS=PLAIN
       - KAFKA_CFG_SASL_MECHANISM_INTER_BROKER_PROTOCOL=PLAIN
-      - KAFKA_CFG_LISTENER_NAME_BROKER_PLAIN_SASL_JAAS_CONFIG=org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="admin-secret" user_alden="alden-secret";
-      - KAFKA_CFG_LISTENER_NAME_CONTROLLER_PLAIN_SASL_JAAS_CONFIG=org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="admin-secret" user_alden="alden-secret";
+      - KAFKA_CFG_LISTENER_NAME_BROKER_PLAIN_SASL_JAAS_CONFIG=org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="admin-secret" user_admin="admin-secret";
+      - KAFKA_CFG_LISTENER_NAME_CONTROLLER_PLAIN_SASL_JAAS_CONFIG=org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="admin-secret" user_admin="admin-secret";
       - BITNAMI_DEBUG=true
+      - KAFKA_INTER_BROKER_USER=user
+      - KAFKA_INTER_BROKER_PASSWORD=bitnami
+      - KAFKA_CLIENT_USERS=admin
+      - KAFKA_CLIENT_PASSWORDS=admin-secret
     volumes:
       - ./kafka:/bitnami/kafka
