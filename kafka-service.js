@@ -1,4 +1,4 @@
-const { Kafka } = require('kafkajs');
+const { Kafka, Partitioners } = require('kafkajs');
 const { KAFKA_AUTH_MECHANISM, KAFKA_CLIENT_USERNAME, KAFKA_CLIENT_PASSWORD, KAFKA_CLIENT_ID, KAFKA_BROKERS } = require('./app-references');
 
 class KafkaService {
@@ -13,7 +13,7 @@ class KafkaService {
           username: KAFKA_CLIENT_USERNAME,
           password: KAFKA_CLIENT_PASSWORD,
         }
-      }).producer();
+      }).producer({ createPartitioner: Partitioners.LegacyPartitioner });
     } else if (role === 'consumer') {
       this.partition = partition;
       this.queue = [];
@@ -53,12 +53,12 @@ class KafkaService {
     await this.consumer.connect();
 
     console.info('Consumer subscribing to the broker ...');
-    await this.consumer.subscribe({ topic: 'transactions', fromBeginning: true });
+    await this.consumer.subscribe({ topic: 'fundTransfers', fromBeginning: true });
 
     console.info('Consumer attempting to start ...');
     await this.consumer.run({
       eachMessage: async ({ topic, partition, message }) => {
-        this.queue.push([topic, message.value.toString()]);
+        this.queue.push([topic, partition, message.value.toString()]);
         console.table(this.queue);
 
         // Temporarily exclude partition matching

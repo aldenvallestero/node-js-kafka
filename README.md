@@ -77,3 +77,6 @@ Assume that you are in the root directory.
 6. Connect, store, and make available data produced by different divisions of a company.
 
 7. Serve as the foundation for data platforms, event-driven architectures, and microservices.
+
+### 🔗 Links
+- [Bitnami Kafka Docs](https://github.com/bitnami/containers/blob/main/bitnami/kafka/README.md)

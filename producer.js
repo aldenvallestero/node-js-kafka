@@ -9,12 +9,12 @@ const send = async (message) => {
 }
 
 const message = {
-  topic: 'transactions',
+  topic: 'fundTransfers',
   messages: [
-    { value: 'MONEY IN - PARTITION 0' },
-    { value: 'MONEY IN - PARTITION 1' },
-    { value: 'MONEY OUT - PARTITION 1' },
-    { value: 'MONEY OUT - PARTITION 2' },
+    { value: 'MONEY IN - PARTITION 0', partition: 0 },
+    { value: 'MONEY IN - PARTITION 1', partition: 1 },
+    { value: 'MONEY OUT - PARTITION 1', partition: 1 },
+    { value: 'MONEY OUT - PARTITION 2', partition: 2 },
   ],
 };
 
